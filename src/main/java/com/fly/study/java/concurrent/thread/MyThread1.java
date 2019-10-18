@@ -7,15 +7,18 @@ package com.fly.study.java.concurrent.thread;
 public class MyThread1 extends Thread {
     @Override
     public void run() {
-        try {
-            Thread.sleep(1000000000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        while (true){
+            new Object();
+            new Object();
+            new Object();
+            new Object();
+            new Object();
+            new Object();
         }
     }
 
     public static void main(String[] args) {
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100; i++) {
             new MyThread1().start();
         }
     }
