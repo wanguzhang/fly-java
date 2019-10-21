@@ -59,4 +59,22 @@ public class Encoding {
     public static String toGBK(String str) throws UnsupportedEncodingException {
         return run3(str,"GBK");
     }
+
+    @Test
+    public void run4() throws UnsupportedEncodingException {
+        String str ="严";
+//        {-47,-49,}
+        System.out.println(toGBK(str));
+//        {-28,-72,-91,}
+        System.out.println(toUTF_8(str));
+    }
+
+    @Test
+    public void run44() {
+        String str="\u0c2c";
+//        బ
+        System.out.println(str);
+//      ✈
+        System.out.println("\u2708");
+    }
 }
