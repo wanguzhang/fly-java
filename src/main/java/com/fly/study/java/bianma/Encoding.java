@@ -164,4 +164,22 @@ public class Encoding {
         final byte[] bytes = gbk.getBytes("UTF-8");
         System.out.println(new String(bytes, "UTF-8"));
     }
+
+    @Test
+    public void run4() throws UnsupportedEncodingException {
+        String str ="严";
+//        {-47,-49,}
+        System.out.println(toGBK(str));
+//        {-28,-72,-91,}
+        System.out.println(toUTF_8(str));
+    }
+
+    @Test
+    public void run44() {
+        String str="\u0c2c";
+//        బ
+        System.out.println(str);
+//      ✈
+        System.out.println("\u2708");
+    }
 }
