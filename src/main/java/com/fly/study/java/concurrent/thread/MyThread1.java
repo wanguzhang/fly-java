@@ -7,7 +7,7 @@ package com.fly.study.java.concurrent.thread;
 public class MyThread1 extends Thread {
     @Override
     public void run() {
-        while (true){
+        while (true) {
             new Object();
             new Object();
             new Object();

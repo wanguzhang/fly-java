@@ -11,7 +11,7 @@ public class ObjectClassTest {
 
     @Test
     public void run() {
-        String str="张攀钦";
+        String str = "张攀钦";
         System.out.println(str.hashCode());
     }
 

@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  * @date 2019/6/10-18:06
  * 项目启动
  */
-@SpringBootApplication(exclude =DataSourceAutoConfiguration.class )
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 public class FlyJavaApplication {
 
     public static void main(String[] args) {

@@ -18,24 +18,25 @@ import java.io.FileNotFoundException;
 public class LombokSneakyThrowsTest {
 
     @SneakyThrows
-    public String str(byte[] bytes){
-        return new String(bytes,"utf-8");
+    public String str(byte[] bytes) {
+        return new String(bytes, "utf-8");
     }
 
     private LombokSneakyThrowsTest lombokSneakyThrowsTest;
 
     @Before
-    public void  before(){
-        lombokSneakyThrowsTest =new LombokSneakyThrowsTest();
+    public void before() {
+        lombokSneakyThrowsTest = new LombokSneakyThrowsTest();
     }
 
     @SneakyThrows
-    public void  io() {
-        File file =new File("");
+    public void io() {
+        File file = new File("");
         new FileInputStream(file);
     }
-    public void  ioNoWithSneakyThrows() throws FileNotFoundException {
-        File file =new File("");
+
+    public void ioNoWithSneakyThrows() throws FileNotFoundException {
+        File file = new File("");
         new FileInputStream(file);
     }
 
@@ -43,8 +44,8 @@ public class LombokSneakyThrowsTest {
     public void run1() {
         try {
             lombokSneakyThrowsTest.str(null);
-        }catch (Exception e){
-            log.error("异常了",e);
+        } catch (Exception e) {
+            log.error("异常了", e);
         }
     }
 
@@ -54,7 +55,7 @@ public class LombokSneakyThrowsTest {
         try {
             lombokSneakyThrowsTest.io();
         } catch (Exception e) {
-            log.error("发现异常",e);
+            log.error("发现异常", e);
         } finally {
         }
     }
@@ -65,7 +66,7 @@ public class LombokSneakyThrowsTest {
     }
 
     @Test
-    public void run4(){
+    public void run4() {
         lombokSneakyThrowsTest.io();
     }
 }

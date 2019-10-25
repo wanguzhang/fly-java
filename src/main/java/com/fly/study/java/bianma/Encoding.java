@@ -27,7 +27,7 @@ public class Encoding {
 
     @Test
     public void run1() throws UnsupportedEncodingException {
-        String str="字";
+        String str = "字";
 //        {-27,-83,-105,}
         byte[] bytes = str.getBytes();
         System.out.println(bytes.toString());
@@ -37,14 +37,14 @@ public class Encoding {
 
     @Test
     public void run2() throws UnsupportedEncodingException {
-        String str="字";
+        String str = "字";
         // {-41,-42}
         System.out.println(toGBK(str));
     }
 
-    public static String  run3(String str, String charset) throws UnsupportedEncodingException {
+    public static String run3(String str, String charset) throws UnsupportedEncodingException {
         byte[] bytes = str.getBytes(charset);
-        StringBuffer sb=new StringBuffer();
+        StringBuffer sb = new StringBuffer();
         sb.append("{");
         for (byte aByte : bytes) {
             sb.append(aByte).append(",");
@@ -54,15 +54,16 @@ public class Encoding {
     }
 
     public static String toUTF_8(String str) throws UnsupportedEncodingException {
-        return run3(str,"UTF-8");
+        return run3(str, "UTF-8");
     }
+
     public static String toGBK(String str) throws UnsupportedEncodingException {
-        return run3(str,"GBK");
+        return run3(str, "GBK");
     }
 
     @Test
     public void run4() throws UnsupportedEncodingException {
-        String str ="严";
+        String str = "严";
 //        {-47,-49,}
         System.out.println(toGBK(str));
 //        {-28,-72,-91,}
@@ -71,7 +72,7 @@ public class Encoding {
 
     @Test
     public void run44() {
-        String str="\u0c2c";
+        String str = "\u0c2c";
 //        బ
         System.out.println(str);
 //      ✈
