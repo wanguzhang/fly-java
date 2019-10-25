@@ -9,6 +9,7 @@ Java 语法
   - T (type) 表示具体的一个java类型
   - K V (key value) 分别代表java键值中的Key Value
   - E (element) 代表Element
+  - S、U、V 等：多参数情况中的第 2、3、4 个类型
 
 ### 代码验证
 
