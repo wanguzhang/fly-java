@@ -2,10 +2,7 @@ package com.fly.study.java.time;
 
 import org.junit.Test;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 
@@ -77,6 +74,7 @@ public class LocalDateTest {
         final LocalDate parse = LocalDate.parse("1970-01-02");
         System.out.println(parse.toEpochDay());
     }
+
 
     @Test
     public void run9() {
