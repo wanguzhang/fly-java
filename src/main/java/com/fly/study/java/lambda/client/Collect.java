@@ -24,6 +24,7 @@ public class Collect {
     public void before() {
         userDTOS = new ArrayList<>(32);
         userDTOS.add(UserDTO.builder().age(18).id(1).username("陈平安").gender(Gender.MALE).build());
+        userDTOS.add(UserDTO.builder().age(18).id(333).username("陈平安33").gender(Gender.MALE).build());
         userDTOS.add(UserDTO.builder().age(19).id(2).username("宁姚").gender(Gender.FEMALE).build());
         userDTOS.add(UserDTO.builder().age(21).id(4).username("周米粒").gender(Gender.FEMALE).build());
         userDTOS.add(UserDTO.builder().age(23).id(6).username("李宝瓶").gender(Gender.FEMALE).build());
@@ -39,6 +40,20 @@ public class Collect {
         userDTOS.add(UserDTO.builder().age(44).id(15).username("崔瀺").gender(Gender.MALE).build());
         userDTOS.add(UserDTO.builder().age(43).id(14).username("文圣老爷").gender(Gender.MALE).build());
     }
+
+    @Test
+    public void toMapTest() {
+        Map<Integer, List<String>> collect = userDTOS.stream().collect(Collectors.toMap(UserDTO::getAge, item -> {
+            List<String> objects = new ArrayList<>();
+            objects.add(item.getUsername());
+            return objects;
+        },(left,r)->{
+            left.addAll(r);
+            return left;
+        }));
+        System.out.println(collect);
+    }
+
 
     @Test
     public void collect1() {
@@ -187,8 +202,11 @@ public class Collect {
      */
     @Test
     public void partitioningBy2() {
-        final Map<Boolean, Optional<UserDTO>> collect = userDTOS.stream().collect(Collectors.partitioningBy(userDTO -> userDTO.getGender().equals(Gender.MALE), Collectors.maxBy(Comparator.comparing(UserDTO::getAge))));
-        final Map<Boolean, Optional<UserDTO>> collect2 = userDTOS.stream().collect(Collectors.partitioningBy(userDTO -> userDTO.getGender().equals(Gender.MALE), Collectors.maxBy(Comparator.comparingInt(UserDTO::getAge))));
+        final Map<Boolean, Optional<UserDTO>> collect = userDTOS.stream().collect(
+                Collectors.partitioningBy(userDTO -> userDTO.getGender().equals(Gender.MALE),
+                        Collectors.maxBy(Comparator.comparing(UserDTO::getAge))));
+        final Map<Boolean, Optional<UserDTO>> collect2 = userDTOS.stream()
+                .collect(Collectors.partitioningBy(userDTO -> userDTO.getGender().equals(Gender.MALE), Collectors.maxBy(Comparator.comparingInt(UserDTO::getAge))));
 
     }
 

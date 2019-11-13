@@ -43,7 +43,6 @@ public class Client {
         userDTOS.add(UserDTO.builder().age(44).id(15).username("崔瀺").gender(Gender.MALE).build());
         userDTOS.add(UserDTO.builder().age(43).id(14).username("文圣老爷").gender(Gender.MALE).build());
     }
-
     @Test
     public void filter() {
         final UserDTO build = UserDTO.builder().age(0).build();
