@@ -1,5 +1,10 @@
 package com.fly.study.java.generics;
 
+import org.junit.Test;
+
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+
 /**
  * @author 张攀钦
  * @date 2019-09-16-07:42
@@ -10,6 +15,16 @@ public class TestServiceImpl implements TestService<String> {
     public String getT(String t) {
         return t;
     }
+    
+    @Test
+    public void run3() {
+        ParameterizedType parameterizedType = (ParameterizedType) TestServiceImpl.class.getGenericInterfaces()[0];
+        Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
+        for (Type actualTypeArgument : actualTypeArguments) {
+            System.out.println(actualTypeArgument);
+        }
+    }
+
 }
 
 class TestServiceImpl2<T> implements TestService<T> {
