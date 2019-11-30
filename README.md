@@ -70,4 +70,13 @@ public class ClientTest<T> {
     }
 }
 ```
+### spi 加载某个冒下的类
 
+![1575111308178](picture/spi.jpg)
+
+```java
+  ServiceLoader<Spi1> printerLoader = ServiceLoader.load(Spi1.class);
+        for (Spi1 printer : printerLoader) {
+            printer.log1();
+        }
+```
