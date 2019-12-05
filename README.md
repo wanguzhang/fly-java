@@ -1,4 +1,60 @@
 Java 语法
+### 操作集合
+```java
+Collections.unmodifiableList
+Collections.unmodifiableMap
+
+```
+```java
+//guava 
+ImmutableList
+Throwables
+Lists
+Maps
+```
+
+
+
+
+### 路径问题
+```java
+    /**
+     * 获取 classpath 路径
+     */
+    @Test
+    public void run1() {
+        URL resource = ClassLoaderDemo.class.getClassLoader().getResource("");
+        System.out.println(resource.getPath());
+    }
+    
+    /**
+     * 相对于当前类下的路径
+     */
+    @Test
+    public void run2() {
+        URL resource = ClassLoaderDemo.class.getResource("");
+        System.out.println(resource.getPath());
+    }
+
+    /**
+     * 当前项目下的路径
+     */
+    @Test
+    public void run3() {
+        Path path = Paths.get("");
+        System.out.println(path.toAbsolutePath());
+    }
+
+    /**
+     * 获取当前项目路径
+     */
+    @Test
+    public void run4() {
+        File file = new File("");
+        System.out.println(file.getAbsolutePath());
+    }
+```
+
 
 ### 泛型
 
