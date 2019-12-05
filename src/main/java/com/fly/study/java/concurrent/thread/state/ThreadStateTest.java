@@ -9,39 +9,38 @@ public class ThreadStateTest {
 
     private static final Object OBJECT = new Object();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+        final Thread thread2 = new Thread(()->{
 
-        Thread thread0 = new Thread(() -> {
-            synchronized (OBJECT) {
+            synchronized (OBJECT){
                 try {
-                    OBJECT.notifyAll();
-                    System.out.println("thread-0-wait 之前");
                     Thread.sleep(10000);
-//                    OBJECT.wait(5000);
-//                    System.out.println("thread-0-wait 之后");
-//                    OBJECT.notifyAll();
-                } catch (Exception e) {
-
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
-
         });
-
-        Thread thread1 = new Thread(() -> {
-            synchronized (OBJECT) {
+        final Thread thread = new Thread(()->{
+            synchronized (OBJECT){
                 try {
-                    OBJECT.notifyAll();
-                    System.out.println("thread-1-wait 之前");
-                    OBJECT.wait(5000);
-                    System.out.println("thread-1-wait 之后");
-                    OBJECT.notifyAll();
-                } catch (Exception e) {
-
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    OBJECT.wait(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         });
-        thread0.start();
-        thread1.start();
+        thread.start();
+        thread2.start();
+        while (true){
+            Thread.sleep(500);
+            System.out.println("thread"+thread.getState());
+            System.out.println("thread2"+thread2.getState());
+        }
     }
 }
 

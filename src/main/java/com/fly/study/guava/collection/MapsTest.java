@@ -1,4 +1,4 @@
-package com.fly.study.guava;
+package com.fly.study.guava.collection;
 
 import com.google.common.collect.Maps;
 import org.junit.Test;
