@@ -22,7 +22,7 @@ public class NashornDemo {
     public void run11() throws IOException, ScriptException, NoSuchMethodException {
         NashornScriptEngineFactory nashornScriptEngineFactory = new NashornScriptEngineFactory();
         System.out.println(nashornScriptEngineFactory.getEngineName());
-        NashornScriptEngine nashorn = (NashornScriptEngine) nashornScriptEngineFactory.getScriptEngine("nashorn");
+        NashornScriptEngine nashorn = (NashornScriptEngine) nashornScriptEngineFactory.getScriptEngine("ECMAScript");
         BufferedReader bufferedReader = Files.newBufferedReader(Paths.get("target/classes/nashorn/demo2.js"));
         CompiledScript compile = nashorn.compile(bufferedReader);
         System.out.println(compile.eval());
