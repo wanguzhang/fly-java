@@ -37,4 +37,19 @@ public class Demo {
         System.out.println(b);
     }
 
+    @Test
+    public void run3() {
+        String str1 = "张攀钦1";
+
+        String str2 = "张攀钦2";
+
+        str2 = str1;
+
+        str1 = "张攀钦3";
+
+        System.out.println(str1);
+        System.out.println(str2);
+
+    }
+
 }
