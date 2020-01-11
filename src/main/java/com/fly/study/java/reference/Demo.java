@@ -1,6 +1,10 @@
 package com.fly.study.java.reference;
 
+import com.google.common.collect.Lists;
+import lombok.Data;
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 /**
  * @author 张攀钦
@@ -37,4 +41,20 @@ public class Demo {
         System.out.println(b);
     }
 
+    @Test
+    public void run3() {
+        ArrayList<MyDemo1> objects = Lists.newArrayList();
+        MyDemo1 myDemo1=null;
+        for (int i = 0; i < 5; i++) {
+            myDemo1=new MyDemo1();
+            myDemo1.setName(String.valueOf(i));
+            objects.add(myDemo1);
+        }
+        System.out.println(objects);
+    }
+}
+
+@Data
+class MyDemo1{
+    private String name;
 }
