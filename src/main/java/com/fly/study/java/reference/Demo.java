@@ -38,18 +38,7 @@ public class Demo {
     }
 
     @Test
-    public void run3() {
-        ArrayList<MyDemo1> objects = Lists.newArrayList();
-        MyDemo1 myDemo1=null;
-        for (int i = 0; i < 5; i++) {
-            myDemo1=new MyDemo1();
-            myDemo1.setName(String.valueOf(i));
-            objects.add(myDemo1);
-        }
-        System.out.println(objects);
-    }
-    @Test
-    public void run3() {
+    public void run4() {
         String str1 = "张攀钦1";
 
         String str2 = "张攀钦2";
