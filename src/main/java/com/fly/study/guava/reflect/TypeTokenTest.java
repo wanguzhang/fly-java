@@ -16,7 +16,7 @@ public class TypeTokenTest {
     public void run1() {
         final TypeToken typeToken = new TypeToken<List<String>>(){};
         final Type type = typeToken.getType();
+        System.out.println(typeToken.getRawType());
         System.out.println(type.getTypeName());
     }
-
 }

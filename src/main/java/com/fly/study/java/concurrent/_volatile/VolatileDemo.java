@@ -1,4 +1,4 @@
-package com.fly.study.java.concurrent;
+package com.fly.study.java.concurrent._volatile;
 
 /**
  * @author 张攀钦

@@ -19,8 +19,8 @@ public class ReferenceCountingGc {
     public static void main(String[] args) throws InterruptedException {
          ReferenceCountingGc referenceCountingGc = new ReferenceCountingGc();
          ReferenceCountingGc referenceCountingGc2 = new ReferenceCountingGc();
-        referenceCountingGc.obj=referenceCountingGc2;
-        referenceCountingGc2.obj=referenceCountingGc;
+         referenceCountingGc.obj=referenceCountingGc2;
+         referenceCountingGc2.obj=referenceCountingGc;
 
         referenceCountingGc=null;
         referenceCountingGc2=null;

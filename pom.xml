@@ -21,6 +21,13 @@
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.14</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/com.google.crypto.tink/tink -->
         <dependency>
             <groupId>com.google.crypto.tink</groupId>

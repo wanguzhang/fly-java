@@ -8,6 +8,8 @@ package com.fly.study.java.reflect;
 public class ReflectDemo {
 
     public static void main(String[] args) {
-
+        while (true){
+            System.out.println(1111);
+        }
     }
 }
