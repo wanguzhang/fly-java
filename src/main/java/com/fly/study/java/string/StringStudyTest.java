@@ -20,8 +20,11 @@ public class StringStudyTest {
         String a = "a";
         System.out.println(a);
         String b = "\u261d";
-//        ☝
-        System.out.println(b);
+        System.out.println(b);// ☝
+        String ding = "\u4E01";
+        String ding2 = "丁";
+        System.out.println(ding);// 丁
+        System.out.println("\u2721");
     }
 
     @Test
@@ -65,4 +68,17 @@ public class StringStudyTest {
         System.out.println("acc丰cb".indexOf(20016));
     }
 
+
+    @Test
+    public void run33() throws UnsupportedEncodingException {
+        String str ="赵";
+        final byte[] bytes = str.getBytes("GBK");
+        StringBuilder stringBuilder =new StringBuilder();
+
+        for (byte aByte : bytes) {
+            stringBuilder.append(aByte).append(",");
+        }
+        // -43,-44
+        System.out.println(stringBuilder.toString());
+    }
 }
