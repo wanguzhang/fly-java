@@ -1,4 +1,4 @@
-package com.fly.blog.sync;
+package com.fly.blog.jol;
 
 import org.openjdk.jol.info.ClassLayout;
 

@@ -11,7 +11,6 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  */
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 public class FlyJavaApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(FlyJavaApplication.class, args);
     }
