@@ -2,15 +2,14 @@ package com.fly.socket;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
+import java.net.StandardSocketOptions;
+import java.nio.ByteBuffer;
+import java.nio.channels.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author 张攀钦
@@ -20,26 +19,43 @@ public class SocketDemo1 {
     public static void main(String[] args) throws IOException {
         final ServerSocketChannel open = ServerSocketChannel.open();
         open.configureBlocking(false);
-        open.bind(new InetSocketAddress(10222), 20);
+        open.bind(new InetSocketAddress("10.211.55.8", 10224), 8);
+        open.setOption(StandardSocketOptions.SO_RCVBUF, 4096);
         final Selector open1 = Selector.open();
         open.register(open1, SelectionKey.OP_ACCEPT);
-        final LinkedBlockingQueue<SocketChannel> objects = new LinkedBlockingQueue<>(1024);
-        final AtomicInteger atomicInteger = new AtomicInteger();
+        final LinkedBlockingQueue<Runnable> objects = new LinkedBlockingQueue<>(1024);
         Selector open2 = Selector.open();
 
         new Thread(() -> {
-            int select = 0;
             while (true) {
                 try {
-                    select = open2.select();
-                    final SocketChannel poll = objects.poll();
-                    if (Objects.nonNull(poll)) {
-                        poll.register(open2, SelectionKey.OP_READ);
-                        open2.wakeup();
+                    int select = open2.select();
+                    if (select > 0) {
+                        final Set<SelectionKey> selectionKeys = open2.selectedKeys();
+                        final Iterator<SelectionKey> iterator = selectionKeys.iterator();
+                        while (iterator.hasNext()) {
+                            System.out.println("随便输入数据");
+                            System.in.read();
+                            final SelectionKey next = iterator.next();
+                            iterator.remove();
+                            if (next.isReadable()) {
+                                final SocketChannel channel = (SocketChannel) next.channel();
+                                final ByteBuffer allocate = ByteBuffer.allocate(1024);
+                                final int read = channel.read(allocate);
+                                if (read == -1) {
+                                    channel.close();
+                                }
+                                if (read > 0) {
+                                    allocate.flip();
+                                    System.out.println(StandardCharsets.UTF_8.decode(allocate).toString());
+                                }
+                            }
+                        }
                     }
-                    final int i = atomicInteger.get();
-                    if (i >= 1000) {
-                        System.out.println("建立了多少个链接: " + i);
+
+                    final Runnable poll = objects.poll();
+                    if (Objects.nonNull(poll)) {
+                        poll.run();
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -62,16 +78,22 @@ public class SocketDemo1 {
                         if (next.isValid() & next.isAcceptable()) {
                             final ServerSocketChannel channel = (ServerSocketChannel) next.channel();
                             final SocketChannel accept = channel.accept();
-                            atomicInteger.incrementAndGet();
                             if (Objects.nonNull(accept)) {
                                 accept.configureBlocking(false);
-                                objects.put(accept);
+                                objects.put(() -> {
+                                    open2.wakeup();
+                                    try {
+                                        accept.register(open2, SelectionKey.OP_READ | SelectionKey.OP_WRITE);
+                                    } catch (ClosedChannelException e) {
+                                        e.printStackTrace();
+                                    }
+                                });
                                 open2.wakeup();
                             }
                         }
                     }
                 } catch (IOException | InterruptedException e) {
-                    System.out.println("建立链接数: " + atomicInteger.get());
+                    e.printStackTrace();
                 }
             }
         }).start();
