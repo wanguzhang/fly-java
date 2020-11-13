@@ -2,8 +2,7 @@ package com.fly.socket;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.nio.channels.SocketChannel;
-import java.util.LinkedList;
+import java.net.Socket;
 
 /**
  * @author: 马士兵教育
@@ -11,22 +10,20 @@ import java.util.LinkedList;
  */
 public class C10Kclient {
 
-    public static void main(String[] args) {
-        LinkedList<SocketChannel> clients = new LinkedList<>();
-        InetSocketAddress serverAddr = new InetSocketAddress("10.211.55.8", 10222);
+    public static void main(String[] args) throws InterruptedException {
+        InetSocketAddress serverAddr = new InetSocketAddress("10.211.55.8", 10224);
 
-        for (int i = 40000; i < 65000; i++) {
+        for (int i = 1; i <= 8; i++) {
             try {
-                SocketChannel client2 = SocketChannel.open();
-                client2.bind(new InetSocketAddress("10.211.55.2", i));
-                client2.connect(serverAddr);
-                boolean c2 = client2.isOpen();
-                clients.add(client2);
-                System.out.println("clients "+ clients.size());
+                final Socket socket = new Socket();
+                socket.connect(serverAddr);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
+        while (true) {
+            Thread.sleep(1000);
+            System.out.println(1);
+        }
     }
 }

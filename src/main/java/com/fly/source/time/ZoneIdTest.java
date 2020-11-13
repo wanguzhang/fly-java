@@ -3,6 +3,7 @@ package com.fly.source.time;
 import org.junit.Test;
 
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @author 张攀钦
@@ -36,12 +37,18 @@ public class ZoneIdTest {
     }
 
     @Test
-    public void run43(){
+    public void run43() {
         final ZoneId of = ZoneId.of("UTC+8");
         final LocalTime now = LocalTime.now(of);
         System.out.println(now.getHour());
         System.out.println(now.getMinute());
         System.out.println(now.getSecond());
         System.out.println(now.getNano());
+    }
+
+    @Test
+    public void run444() {
+        final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        System.out.printf(dateTimeFormatter.format(LocalDateTime.now()));
     }
 }

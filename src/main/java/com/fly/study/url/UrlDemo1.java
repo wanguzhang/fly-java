@@ -1,5 +1,6 @@
 package com.fly.study.url;
 
+import cn.hutool.core.io.IoUtil;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -8,6 +9,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -67,5 +69,14 @@ public class UrlDemo1 {
         final String s = new String(data, 0, read);
         System.out.println(s);
         inputStream.close();
+    }
+
+    @Test
+    public void run33() throws IOException {
+        final URL url = new URL("file:/Users/zhangpanqin/github/fly-java/target/classes/demo.txt");
+        final URLConnection urlConnection = url.openConnection();
+        final InputStream inputStream = urlConnection.getInputStream();
+        final String read = IoUtil.read(inputStream, StandardCharsets.UTF_8);
+        System.out.println(read);
     }
 }
