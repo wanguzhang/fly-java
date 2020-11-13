@@ -11,9 +11,9 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class RmiRegistry {
     public static void main(String[] args) throws RemoteException {
-        final ITestRmiService testRmiService = new TestRmiServiceImpl();
-        UnicastRemoteObject.exportObject(testRmiService, 7771);
-        final Registry registry = LocateRegistry.createRegistry(11122);
-        registry.rebind("testRmiService", testRmiService);
+//        final ITestRmiService testRmiService = new TestRmiServiceImpl();
+//        UnicastRemoteObject.exportObject(testRmiService, 7771);
+//        final Registry registry = LocateRegistry.createRegistry(11122);
+//        registry.rebind("testRmiService", testRmiService);
     }
 }
