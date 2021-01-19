@@ -9,6 +9,7 @@ import java.nio.channels.spi.SelectorProvider;
  */
 public class TEst111 {
         public static void main(String[] args) throws IOException {
-            System.out.println(SelectorProvider.provider().openSelector());
+//            System.out.println(SelectorProvider.provider().openSelector());
+            
         }
 }
